@@ -77,11 +77,11 @@
 		5E6F752C1B4FAABC003B262D /* swidoku */ = {
 			isa = PBXGroup;
 			children = (
+				5E6F75511B4FAC8A003B262D /* Controller */,
+				5E6F75501B4FAC82003B262D /* View */,
+				5E6F754F1B4FABA6003B262D /* Model */,
 				5E6F752F1B4FAABC003B262D /* AppDelegate.swift */,
-				5E6F75311B4FAABC003B262D /* ViewController.swift */,
-				5E6F75331B4FAABC003B262D /* Main.storyboard */,
 				5E6F75361B4FAABC003B262D /* Images.xcassets */,
-				5E6F75381B4FAABC003B262D /* LaunchScreen.xib */,
 				5E6F752D1B4FAABC003B262D /* Supporting Files */,
 			);
 			path = swidoku;
@@ -110,6 +110,30 @@
 				5E6F75441B4FAABC003B262D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5E6F754F1B4FABA6003B262D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5E6F75501B4FAC82003B262D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5E6F75331B4FAABC003B262D /* Main.storyboard */,
+				5E6F75381B4FAABC003B262D /* LaunchScreen.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		5E6F75511B4FAC8A003B262D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5E6F75311B4FAABC003B262D /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
