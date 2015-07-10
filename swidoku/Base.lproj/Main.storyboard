@@ -19,7 +19,35 @@
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xjV-7V-IBC" userLabel="Main-Upper-View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="420"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5W7-Ho-mm1">
+                                        <rect key="frame" x="2" y="2" width="596" height="416"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="m7M-dF-ChX">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bnZ-Cg-LOc">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.73240214650000002" green="0.080623261579999994" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5W7-Ho-mm1" secondAttribute="trailing" constant="2" id="Ijm-I4-wV0"/>
+                                    <constraint firstAttribute="bottom" secondItem="5W7-Ho-mm1" secondAttribute="bottom" constant="2" id="OaJ-7t-JFn"/>
+                                    <constraint firstItem="5W7-Ho-mm1" firstAttribute="top" secondItem="xjV-7V-IBC" secondAttribute="top" constant="2" id="jwU-9P-IJm"/>
+                                    <constraint firstItem="5W7-Ho-mm1" firstAttribute="leading" secondItem="xjV-7V-IBC" secondAttribute="leading" constant="2" id="yw6-eZ-46l"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGc-vZ-Odc" userLabel="Main-Buttom-View">
                                 <rect key="frame" x="0.0" y="484" width="600" height="116"/>
