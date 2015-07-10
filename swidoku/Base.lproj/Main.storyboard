@@ -17,16 +17,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hZ9-wm-oeD">
-                                <rect key="frame" x="0.0" y="64" width="600" height="400"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xjV-7V-IBC" userLabel="Main-Upper-View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="420"/>
+                                <color key="backgroundColor" red="0.73240214650000002" green="0.080623261579999994" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGc-vZ-Odc" userLabel="Main-Buttom-View">
+                                <rect key="frame" x="0.0" y="484" width="600" height="116"/>
                                 <color key="backgroundColor" red="0.50295928030000003" green="0.46513775769999999" blue="0.20564925040000001" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="hZ9-wm-oeD" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="1My-Im-tld"/>
-                            <constraint firstItem="hZ9-wm-oeD" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="HvU-fn-cRV"/>
-                            <constraint firstAttribute="centerX" secondItem="hZ9-wm-oeD" secondAttribute="centerX" id="jzL-Ih-Rzj"/>
+                            <constraint firstItem="xjV-7V-IBC" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="0sP-FY-nFZ"/>
+                            <constraint firstItem="xjV-7V-IBC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="5PF-Gz-z0U"/>
+                            <constraint firstItem="EGc-vZ-Odc" firstAttribute="top" secondItem="xjV-7V-IBC" secondAttribute="bottom" id="C6i-4D-8ub"/>
+                            <constraint firstAttribute="centerX" secondItem="xjV-7V-IBC" secondAttribute="centerX" id="DZk-JC-UbA"/>
+                            <constraint firstItem="xjV-7V-IBC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="FHx-ze-sPp"/>
+                            <constraint firstItem="EGc-vZ-Odc" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="H5k-N8-fHG"/>
+                            <constraint firstAttribute="centerX" secondItem="EGc-vZ-Odc" secondAttribute="centerX" id="Tsf-iF-80G"/>
+                            <constraint firstItem="EGc-vZ-Odc" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="gKG-pa-TEf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EGc-vZ-Odc" secondAttribute="bottom" id="lzE-GT-A5B"/>
+                            <constraint firstItem="EGc-vZ-Odc" firstAttribute="top" secondItem="xjV-7V-IBC" secondAttribute="bottom" id="mj8-CZ-Kkg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lFc-X9-0V0"/>
