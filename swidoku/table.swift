@@ -12,14 +12,26 @@ class Table {
     var contentTable = Array<Array<Int>>()
     
     init() {
-        for c in 0..<10 {
+        for c in 0..<9 {
             self.contentTable.append(Array(count: 9, repeatedValue: Int()))
         }
-        for i in 0..<9 {
-            for n in 0..<9 {
-                self.contentTable[i][n] = 0
+        for x in 0..<9 {
+            for y in 0..<9 {
+                self.contentTable[x][y] = 0
             }
         }
+    }
+    
+    func setArray(x : Array<Array<Int>>) {
+        for i in 0..<9 {
+            for n in 0..<9 {
+                self.contentTable[i][n] = x[i][n]
+            }
+        }
+    }
+    
+    func getArray() -> Array<Array<Int>> {
+        return self.contentTable
     }
     
     func getXYValue(x: Int, y: Int) -> Int {
@@ -28,7 +40,7 @@ class Table {
             return -1
         }
         else {
-            return self.contentTable[2][3]
+            return self.contentTable[x][y]
         }
     }
     
