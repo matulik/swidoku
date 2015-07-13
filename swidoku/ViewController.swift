@@ -140,35 +140,14 @@ class ViewController: UIViewController {
                 
             }
         }
-        
-        
-        /*
-        var labelTap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "labelTap")
-        labelTap.numberOfTapsRequired = 1
-        
-        var sindex : Int = -1
-        var bindex : Int = -1
-        
-        for x in 0..<6 {
-            for y in 0..<6 {
-                if (x == 0 && y == 0) {
-                    sindex = 99
-                    bindex = 100
-                }
-                else {
-                    bindex = (x*10)+y
-                    sindex = (x+1/3)*10+(y+1/3)
-                }
-                var label : UILabel? = self.contentView.viewWithTag(sindex)?.viewWithTag(bindex) as? UILabel
-                label?.userInteractionEnabled = true
-                label?.addGestureRecognizer(labelTap)
-            }
-        }*/
     }
     
     // Perform tap
     func labelTap(g: UIGestureRecognizer) {
         var view = g.view
         println(view!.tag)
+        var label : UILabel = (view?.viewWithTag(view!.tag) as? UILabel)!
+        println(label.text)
+        // TODO tapping
     }
 }
