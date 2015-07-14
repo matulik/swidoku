@@ -59,4 +59,46 @@ class Table {
             return 0
         }
     }
+    
+    // @S - square (0,1,2,10,11,12,20,21,22)
+    func checkSquare(tag: Int) -> Bool {
+        let x : Int = (tag/10)*3
+        let y : Int = (tag - (tag/10)*10)*3
+
+        var checkArray = [Int](count: 9, repeatedValue: 0)
+        
+        for n in x..<x+3 {
+            for m in y..<y+3 {
+                if (self.getXYValue(n, y: m) != 0) {
+                    checkArray[self.getXYValue(n, y: m)-1]++
+                }
+            }
+        }
+        println(checkArray)
+        for i in 0..<9 {
+            if checkArray[i] != 1 {
+                return false
+            }
+        }
+        return true
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
