@@ -97,21 +97,17 @@ class ViewController: UIViewController {
     
     // Method to get XY value from view
     func getXYViewValue(x: Int, y: Int) -> Int {
-        // Index for 3x3
-        var sindex : Int = -1
         // Index for 9x9
         var bindex : Int = -1
         if (x == 0 && y == 0) {
-            sindex = 99
             bindex = 100
         }
         else {
             bindex = (x*10)+y
-            sindex = (x+1/3)*10+(y+1/3)
         }
         // Getting value
         //println("get: x=\(sindex), y=\(bindex)")
-        var label : UILabel? = self.contentView.viewWithTag(sindex)?.viewWithTag(bindex) as? UILabel
+        var label : UILabel? = self.contentView.viewWithTag(bindex) as? UILabel
         if let l = label {
             if l.text! == "0" {
                 return 0
@@ -132,21 +128,17 @@ class ViewController: UIViewController {
         if (v < 0 || v > 9) {
             return -2
         }
-        // Index for 3x3
-        var sindex : Int = -1
         // Index for 9x9
         var bindex : Int = -1
         if (x == 0 && y == 0) {
-            sindex = 99
             bindex = 100
         }
         else {
             bindex = (x*10)+y
-            sindex = (x+1/3)*10+(y+1/3)
         }
         // Setting value
         //println("set: x=\(sindex), y=\(bindex)")
-        var label : UILabel? = self.contentView.viewWithTag(sindex)?.viewWithTag(bindex) as? UILabel
+        var label : UILabel? = self.contentView.viewWithTag(bindex) as? UILabel
         if let l = label {
             if v == 0 {
                 l.text = ""
@@ -195,21 +187,17 @@ class ViewController: UIViewController {
             labelArray.append(Array(count: 9, repeatedValue: UILabel()))
         }
         
-        var sindex : Int = -1
         var bindex : Int = -1
         
         for x in 0..<9 {
             for y in 0..<9 {
                 if(x == 0 && y == 0) {
-                    sindex = 99
                     bindex = 100
                 }
                 else {
                     bindex = (x*10)+y
-                    sindex = (x+1/3)*10+(y+1/3)
                 }
-                println("s:\(sindex), b:\(bindex)")
-                labelArray[x][y] = (self.contentView.viewWithTag(sindex)?.viewWithTag(bindex) as? UILabel)!
+                labelArray[x][y] = (self.contentView.viewWithTag(bindex) as? UILabel)!
                 labelTapArray[x][y] = UITapGestureRecognizer(target: self, action: "labelTap:")
                 labelTapArray[x][y].numberOfTapsRequired = 1
                 labelArray[x][y].userInteractionEnabled = true
