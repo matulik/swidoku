@@ -74,9 +74,53 @@ class Table {
                 }
             }
         }
-        println(checkArray)
+        println("checkSquare: \(checkArray)")
         for i in 0..<9 {
             if checkArray[i] != 1 {
+                return false
+            }
+        }
+        return true
+    }
+    
+    // @pos - x/y first position, @p - Horizontal(True), Vertical(False)
+    func checkLine(pos: Int, h: Bool) -> Bool {
+        var checkArray = [Int](count: 9, repeatedValue: 0)
+        for i in 0..<9 {
+            if (h == true) {
+                if(self.getXYValue(pos, y: i) != 0) {
+                    checkArray[self.getXYValue(pos, y: i)-1]++
+                }
+            }
+            else {
+                if(self.getXYValue(i, y: pos) != 0) {
+                    checkArray[self.getXYValue(i, y: pos)-1]++
+                }
+            }
+        }
+        println("checkLine: \(checkArray)")
+        for i in 0..<9 {
+            if checkArray[i] != 1 {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func checkTable() -> Bool {
+        // Squares checking
+        if !(self.checkSquare(0) && self.checkSquare(1) && self.checkSquare(2) && self.checkSquare(10) && self.checkSquare(11) && self.checkSquare(12) && self.checkSquare(20) && self.checkSquare(21) && self.checkSquare(22)) {
+            return false
+        }
+        
+        for i in 0..<9 {
+            // Horizontal checking
+            if (self.checkLine(i, h: true) == false ){
+                return false
+            }
+            
+            // Vertical checking
+            if (self.checkLine(i, h: false) == false) {
                 return false
             }
         }

@@ -21,12 +21,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // Gesture
+        // Gesture (must to do)
         self.initLabels()
         //
+        
         self.table = Table()
         self.fillArray(self.table)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +40,6 @@ class ViewController: UIViewController {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 1)
             self.table.setArray(self.returnAsArray())
-            println(self.table.checkSquare(0))
         }
     }
     
@@ -241,6 +240,6 @@ class ViewController: UIViewController {
             label_prev!.backgroundColor = UIColor(red: 0x00/255, green: 0xC8/255, blue: 0xFF/255, alpha: 1.0)
             self.currentTagEditable = true
         }
+        println(self.table.checkTable())
     }
-
 }
