@@ -11,6 +11,12 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var contentView: UIView!
     
+    var currentSelectedTag : Int = 88
+    var currentSelectedX : Int = 8
+    var currentSelectedY : Int = 8
+    var currentTagEditable : Bool = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -18,9 +24,8 @@ class ViewController: UIViewController {
         self.initLabels()
         //
         
-        //var table : Table = Table()
-        //self.fillArray(table)
-        
+        var table : Table = Table()
+        self.fillArray(table)
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +34,68 @@ class ViewController: UIViewController {
     }
     
     
-    //Method to get XY value from view
+    // Buttons actions
+    @IBAction func pressButton1(sender: AnyObject) {
+        if self.currentTagEditable == true {
+        self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 1)
+        }
+    }
+    
+    @IBAction func pressButton2(sender: AnyObject) {
+        if self.currentTagEditable == true {
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 2)
+        }
+    }
+    
+    @IBAction func pressButton3(sender: AnyObject) {
+        if self.currentTagEditable == true {
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 3)
+        }
+    }
+    
+    @IBAction func pressButton4(sender: AnyObject) {
+        if self.currentTagEditable == true {
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 4)
+        }
+    }
+    
+    @IBAction func pressButton5(sender: AnyObject) {
+        if self.currentTagEditable == true {
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 5)
+        }
+    }
+    
+    @IBAction func pressButton6(sender: AnyObject) {
+        if self.currentTagEditable == true {
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 6)
+        }
+    }
+    
+    @IBAction func pressButton7(sender: AnyObject) {
+        if self.currentTagEditable == true {
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 7)
+        }
+    }
+    
+    @IBAction func pressButton8(sender: AnyObject) {
+        if self.currentTagEditable == true {
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 8)
+        }
+    }
+    
+    @IBAction func pressButton9(sender: AnyObject) {
+        if self.currentTagEditable == true {
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 9)
+        }
+    }
+    
+    @IBAction func pressButtonClear(sender: AnyObject) {
+        if self.currentTagEditable == true {
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 0)
+        }
+    }
+    
+    // Method to get XY value from view
     func getXYViewValue(x: Int, y: Int) -> Int {
         // Index for 3x3
         var sindex : Int = -1
@@ -47,7 +113,12 @@ class ViewController: UIViewController {
         //println("get: x=\(sindex), y=\(bindex)")
         var label : UILabel? = self.contentView.viewWithTag(sindex)?.viewWithTag(bindex) as? UILabel
         if let l = label {
-            return l.text!.toInt()!
+            if l.text! == "0" {
+                return 0
+            }
+            else {
+                return l.text!.toInt()!
+            }
         }
         // Bad x or y = -1
         else {
@@ -77,7 +148,12 @@ class ViewController: UIViewController {
         //println("set: x=\(sindex), y=\(bindex)")
         var label : UILabel? = self.contentView.viewWithTag(sindex)?.viewWithTag(bindex) as? UILabel
         if let l = label {
-            l.text = String(format: "%d", v)
+            if v == 0 {
+                l.text = ""
+            }
+            else {
+                l.text = String(format: "%d", v)
+            }
             // Return 0 if success
             return 0
         }
@@ -132,12 +208,12 @@ class ViewController: UIViewController {
                     bindex = (x*10)+y
                     sindex = (x+1/3)*10+(y+1/3)
                 }
+                println("s:\(sindex), b:\(bindex)")
                 labelArray[x][y] = (self.contentView.viewWithTag(sindex)?.viewWithTag(bindex) as? UILabel)!
                 labelTapArray[x][y] = UITapGestureRecognizer(target: self, action: "labelTap:")
                 labelTapArray[x][y].numberOfTapsRequired = 1
                 labelArray[x][y].userInteractionEnabled = true
                 labelArray[x][y].addGestureRecognizer(labelTapArray[x][y])
-                
             }
         }
     }
@@ -145,9 +221,19 @@ class ViewController: UIViewController {
     // Perform tap
     func labelTap(g: UIGestureRecognizer) {
         var view = g.view
-        println(view!.tag)
-        var label : UILabel = (view?.viewWithTag(view!.tag) as? UILabel)!
-        println(label.text)
-        // TODO tapping
+        if (self.currentSelectedTag != view?.tag) {
+            var label_prev : UILabel? = self.contentView.viewWithTag(self.currentSelectedTag) as? UILabel
+            label_prev!.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
+            
+            self.currentSelectedTag = view!.tag
+            self.currentSelectedX = self.currentSelectedTag / 10
+            self.currentSelectedY = self.currentSelectedTag - self.currentSelectedX * 10
+            var label : UILabel? = self.contentView.viewWithTag(view!.tag) as? UILabel
+            label!.backgroundColor = UIColor(red: 0xFF/255, green: 0xFF/255, blue: 0x00/255, alpha: 1.0)
+        }
+        else {
+            
+        }
     }
+
 }
