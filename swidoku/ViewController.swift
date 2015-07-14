@@ -222,17 +222,24 @@ class ViewController: UIViewController {
     func labelTap(g: UIGestureRecognizer) {
         var view = g.view
         if (self.currentSelectedTag != view?.tag) {
+            // Previous label
             var label_prev : UILabel? = self.contentView.viewWithTag(self.currentSelectedTag) as? UILabel
             label_prev!.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
             
+            // Current label
             self.currentSelectedTag = view!.tag
             self.currentSelectedX = self.currentSelectedTag / 10
             self.currentSelectedY = self.currentSelectedTag - self.currentSelectedX * 10
             var label : UILabel? = self.contentView.viewWithTag(view!.tag) as? UILabel
             label!.backgroundColor = UIColor(red: 0xFF/255, green: 0xFF/255, blue: 0x00/255, alpha: 1.0)
+            
+            // Disable editable
+            self.currentTagEditable = false
         }
         else {
-            
+            var label_prev : UILabel? = self.contentView.viewWithTag(self.currentSelectedTag) as? UILabel
+            label_prev!.backgroundColor = UIColor(red: 0x00/255, green: 0xC8/255, blue: 0xFF/255, alpha: 1.0)
+            self.currentTagEditable = true
         }
     }
 
