@@ -15,17 +15,18 @@ class ViewController: UIViewController {
     var currentSelectedX : Int = 8
     var currentSelectedY : Int = 8
     var currentTagEditable : Bool = false
+    var table = Table()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // Gesture
+        // Gesture (must to do)
         self.initLabels()
         //
         
-        var table : Table = Table()
-        self.fillArray(table)
+        self.table = Table()
+        self.fillArray(self.table)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,61 +38,71 @@ class ViewController: UIViewController {
     // Buttons actions
     @IBAction func pressButton1(sender: AnyObject) {
         if self.currentTagEditable == true {
-        self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 1)
+            self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 1)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
     @IBAction func pressButton2(sender: AnyObject) {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 2)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
     @IBAction func pressButton3(sender: AnyObject) {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 3)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
     @IBAction func pressButton4(sender: AnyObject) {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 4)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
     @IBAction func pressButton5(sender: AnyObject) {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 5)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
     @IBAction func pressButton6(sender: AnyObject) {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 6)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
     @IBAction func pressButton7(sender: AnyObject) {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 7)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
     @IBAction func pressButton8(sender: AnyObject) {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 8)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
     @IBAction func pressButton9(sender: AnyObject) {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 9)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
     @IBAction func pressButtonClear(sender: AnyObject) {
         if self.currentTagEditable == true {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 0)
+            self.table.setArray(self.returnAsArray())
         }
     }
     
@@ -109,7 +120,7 @@ class ViewController: UIViewController {
         //println("get: x=\(sindex), y=\(bindex)")
         var label : UILabel? = self.contentView.viewWithTag(bindex) as? UILabel
         if let l = label {
-            if l.text! == "0" {
+            if (l.text! == "0" || l.text! == "") {
                 return 0
             }
             else {
@@ -229,6 +240,6 @@ class ViewController: UIViewController {
             label_prev!.backgroundColor = UIColor(red: 0x00/255, green: 0xC8/255, blue: 0xFF/255, alpha: 1.0)
             self.currentTagEditable = true
         }
+        println(self.table.checkTable())
     }
-
 }

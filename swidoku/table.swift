@@ -59,4 +59,90 @@ class Table {
             return 0
         }
     }
+    
+    // @S - square (0,1,2,10,11,12,20,21,22)
+    func checkSquare(tag: Int) -> Bool {
+        let x : Int = (tag/10)*3
+        let y : Int = (tag - (tag/10)*10)*3
+
+        var checkArray = [Int](count: 9, repeatedValue: 0)
+        
+        for n in x..<x+3 {
+            for m in y..<y+3 {
+                if (self.getXYValue(n, y: m) != 0) {
+                    checkArray[self.getXYValue(n, y: m)-1]++
+                }
+            }
+        }
+        println("checkSquare: \(checkArray)")
+        for i in 0..<9 {
+            if checkArray[i] != 1 {
+                return false
+            }
+        }
+        return true
+    }
+    
+    // @pos - x/y first position, @p - Horizontal(True), Vertical(False)
+    func checkLine(pos: Int, h: Bool) -> Bool {
+        var checkArray = [Int](count: 9, repeatedValue: 0)
+        for i in 0..<9 {
+            if (h == true) {
+                if(self.getXYValue(pos, y: i) != 0) {
+                    checkArray[self.getXYValue(pos, y: i)-1]++
+                }
+            }
+            else {
+                if(self.getXYValue(i, y: pos) != 0) {
+                    checkArray[self.getXYValue(i, y: pos)-1]++
+                }
+            }
+        }
+        println("checkLine: \(checkArray)")
+        for i in 0..<9 {
+            if checkArray[i] != 1 {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func checkTable() -> Bool {
+        // Squares checking
+        if !(self.checkSquare(0) && self.checkSquare(1) && self.checkSquare(2) && self.checkSquare(10) && self.checkSquare(11) && self.checkSquare(12) && self.checkSquare(20) && self.checkSquare(21) && self.checkSquare(22)) {
+            return false
+        }
+        
+        for i in 0..<9 {
+            // Horizontal checking
+            if (self.checkLine(i, h: true) == false ){
+                return false
+            }
+            
+            // Vertical checking
+            if (self.checkLine(i, h: false) == false) {
+                return false
+            }
+        }
+        return true
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
