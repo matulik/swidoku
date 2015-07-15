@@ -20,9 +20,6 @@ class Table {
                 self.contentTable[x][y] = 0
             }
         }
-        //
-        self.readJSONTable()
-        //
     }
     
     func setArray(x : Array<Array<Int>>) {
@@ -130,34 +127,17 @@ class Table {
         return true
     }
     
-    func readJSONTable() {
-        let path = NSBundle.mainBundle().pathForResource("tables/sample", ofType: "json")
-        var data = NSData(// TODO
-        if let json : NSDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary {
-            if let items = json[0] as? NSArray {
-                for item in items {
-                    println(item)
+    func readJSONTableFromFile(name : String) -> Bool {
+        let path = NSBundle.mainBundle().pathForResource("Tables/"+name, ofType: "json")
+        if let data = NSData(contentsOfFile: path!, options: NSDataReadingOptions.allZeros, error: nil) {
+            let json = JSON(data : data)
+            for x in 0..<9 {
+                for y in 0..<9 {
+                    self.setXYValue(x, y: y, v: json["sudokuTable"][x][y].int!)
                 }
             }
+            return true
         }
+     return false
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

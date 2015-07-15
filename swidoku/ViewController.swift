@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var currentSelectedX : Int = 8
     var currentSelectedY : Int = 8
     var currentTagEditable : Bool = false
-    var table = Table()
+    var table : Table = Table()
     
     
     override func viewDidLoad() {
@@ -24,8 +24,7 @@ class ViewController: UIViewController {
         // Gesture (must to do)
         self.initLabels()
         //
-        
-        self.table = Table()
+        table.readJSONTableFromFile("sample")
         self.fillArray(self.table)
     }
 
@@ -166,11 +165,29 @@ class ViewController: UIViewController {
         }
     }
     
-    // Filling array by param @table array
+    // Filling array by param @table array 
+    // Remember to call only once in initialization of table
     func fillArray(table : Table) {
+        var bindex : Int = 0
         for x in 0..<9 {
             for y in 0..<9 {
-                self.setXYViewValue(x, y: y, v: table.getXYValue(x, y: y))
+                if (table.getXYValue(x, y: y) != 0) {
+                    if (x == 0 && y == 0) {
+                        bindex = 100
+                    }
+                    else {
+                        bindex = x*10+y
+                    }
+                    var label : UILabel? = self.contentView.viewWithTag(bindex) as? UILabel
+                    if let l = label {
+                        l.textColor = UIColor(red: 0xFF/255, green: 0xFF/255, blue: 0xFF/255, alpha: 1.0)
+                        l.enabled = false
+                    }
+                    self.setXYViewValue(x, y: y, v: table.getXYValue(x, y: y))
+                }
+                else {
+                    self.setXYViewValue(x, y: y, v: table.getXYValue(x, y: y))
+                }
             }
         }
     }
@@ -237,8 +254,14 @@ class ViewController: UIViewController {
         }
         else {
             var label_prev : UILabel? = self.contentView.viewWithTag(self.currentSelectedTag) as? UILabel
-            label_prev!.backgroundColor = UIColor(red: 0x00/255, green: 0xC8/255, blue: 0xFF/255, alpha: 1.0)
-            self.currentTagEditable = true
+            if let l = label_prev {
+                if (l.enabled == false) {
+                    return
+                }
+                l.backgroundColor = UIColor(red: 0x00/255, green: 0xC8/255, blue: 0xFF/255, alpha: 1.0)
+                self.currentTagEditable = true
+            }
+
         }
         println(self.table.checkTable())
     }
