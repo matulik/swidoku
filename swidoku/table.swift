@@ -127,6 +127,7 @@ class Table {
         return true
     }
     
+    // To read JSON table file and set into self table. Remember to keep "sudokuTable" key in json file
     func readJSONTableFromFile(name : String) -> Bool {
         let path = NSBundle.mainBundle().pathForResource("Tables/"+name, ofType: "json")
         if let data = NSData(contentsOfFile: path!, options: NSDataReadingOptions.allZeros, error: nil) {
