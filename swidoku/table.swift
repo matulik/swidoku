@@ -74,7 +74,7 @@ class Table {
                 }
             }
         }
-        println("checkSquare: \(checkArray)")
+        //println("checkSquare: \(checkArray)")
         for i in 0..<9 {
             if checkArray[i] != 1 {
                 return false
@@ -98,7 +98,7 @@ class Table {
                 }
             }
         }
-        println("checkLine: \(checkArray)")
+        //println("checkLine: \(checkArray)")
         for i in 0..<9 {
             if checkArray[i] != 1 {
                 return false

@@ -9,7 +9,7 @@
         <!--Swidoku-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Swidoku" id="BYZ-38-t0r" customClass="ViewController" customModule="swidoku" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MainViewController" storyboardIdentifier="MainViewController" title="Swidoku" id="BYZ-38-t0r" customClass="ViewController" customModule="swidoku" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -1143,6 +1143,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDw-yX-a1C">
                                                 <rect key="frame" x="74" y="43" width="70" height="38"/>
                                                 <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="5">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1298,7 +1299,7 @@
         <!--Settings-->
         <scene sceneID="Kvo-KL-629">
             <objects>
-                <viewController title="Settings" id="RUj-ck-P7S" customClass="SettingsController" customModule="swidoku" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" title="Settings" id="RUj-ck-P7S" customClass="SettingsController" customModule="swidoku" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="he4-cL-H6I"/>
                         <viewControllerLayoutGuide type="bottom" id="PzD-Zr-DQ2"/>
@@ -1313,7 +1314,7 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9yw-3F-STN">
                                         <rect key="frame" x="256" y="116" width="51" height="31"/>
                                         <connections>
-                                            <action selector="switchAutoInfo:" destination="RUj-ck-P7S" eventType="touchUpInside" id="10g-v5-bIc"/>
+                                            <action selector="autoinfoValueChanged:" destination="RUj-ck-P7S" eventType="valueChanged" id="rvu-4v-Jv9"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-information when table is right" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpk-H7-OS8">
@@ -1375,7 +1376,7 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IsL-Sh-1kX">
                                         <rect key="frame" x="256" y="116" width="51" height="31"/>
                                         <connections>
-                                            <action selector="switchHighlight:" destination="RUj-ck-P7S" eventType="touchUpInside" id="g09-34-1aA"/>
+                                            <action selector="highlightValueChanged:" destination="RUj-ck-P7S" eventType="valueChanged" id="ZXV-mt-syZ"/>
                                         </connections>
                                     </switch>
                                 </subviews>
@@ -1410,6 +1411,10 @@
                             <constraint firstItem="wVf-z1-Y7u" firstAttribute="height" secondItem="3IN-AT-X7s" secondAttribute="height" id="x8b-Fz-GD7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="autoinfoSwitch" destination="9yw-3F-STN" id="obf-bK-mQv"/>
+                        <outlet property="highlightSwitch" destination="IsL-Sh-1kX" id="Hhx-61-eOW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JgQ-fa-c3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1418,7 +1423,7 @@
         <!--Swidoku-->
         <scene sceneID="ofZ-aO-TIZ">
             <objects>
-                <navigationController title="Swidoku" id="Q7K-Iw-oOZ" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="NavigationController" storyboardIdentifier="NavigationController" title="Swidoku" id="Q7K-Iw-oOZ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WxS-BR-yBZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
