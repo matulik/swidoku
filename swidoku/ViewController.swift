@@ -353,6 +353,24 @@ class ViewController: UIViewController {
         }
     }
     
+    func clearHighlight() {
+        var bindex : Int
+        for x in 0..<9 {
+            for y in 0..<9 {
+                if(x == 0 && y == 0) {
+                    bindex = 100
+                }
+                else {
+                    bindex = (x*10)+y
+                }
+                var label = self.contentView.viewWithTag(bindex) as? UILabel
+                if let l = label {
+                    label!.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
+                }
+            }
+        }
+    }
+    
     func runCheck() {
         var message : String
         var title : String

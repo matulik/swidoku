@@ -54,6 +54,7 @@ class SettingsController: UIViewController {
         let mainVC = self.navigationController?.viewControllers[0] as! ViewController
         mainVC.highlight = self.highlight
         mainVC.autoinfo = self.autoinfo
+        mainVC.clearHighlight()
     }
     
     // It doesnt work for navigation controller "back"
