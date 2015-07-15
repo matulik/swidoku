@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     var currentSelectedX : Int = 8
     var currentSelectedY : Int = 8
     var currentTagEditable : Bool = false
+    var highlight : Bool = false
+    var autoInfo : Bool = false
+    
     var table : Table = Table()
     
     
@@ -34,6 +37,29 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let settingsVC = segue.destinationViewController as? SettingsController
+        settingsVC?.highlight
+        // TODO
+    }
+    
+    @IBAction func checkButton(sender: AnyObject) {
+        var message : String
+        var title : String
+        if (self.table.checkTable() == true) {
+            title = "Success!"
+            message = "Your table is perfectly!"
+        }
+        else {
+            title = "Checking fail.."
+            message = "Your table is wrong.."
+        }
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     
     
     // Buttons actions
