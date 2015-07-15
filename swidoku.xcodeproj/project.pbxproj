@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E4FB86C1B55431900AC6255 /* Tables in Resources */ = {isa = PBXBuildFile; fileRef = 5E4FB86B1B55431900AC6255 /* Tables */; };
+		5E6F03201B563AC2006E7E6A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6F031F1B563AC2006E7E6A /* SwiftyJSON.swift */; };
 		5E6F75301B4FAABC003B262D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6F752F1B4FAABC003B262D /* AppDelegate.swift */; };
 		5E6F75321B4FAABC003B262D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6F75311B4FAABC003B262D /* ViewController.swift */; };
 		5E6F75351B4FAABC003B262D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6F75331B4FAABC003B262D /* Main.storyboard */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E4FB86B1B55431900AC6255 /* Tables */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tables; sourceTree = "<group>"; };
+		5E6F031F1B563AC2006E7E6A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		5E6F752A1B4FAABC003B262D /* swidoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swidoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6F752E1B4FAABC003B262D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6F752F1B4FAABC003B262D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E6F03161B5637ED006E7E6A /* Addons */ = {
+			isa = PBXGroup;
+			children = (
+				5E6F031F1B563AC2006E7E6A /* SwiftyJSON.swift */,
+			);
+			name = Addons;
+			sourceTree = "<group>";
+		};
 		5E6F75211B4FAABC003B262D = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +91,8 @@
 		5E6F752C1B4FAABC003B262D /* swidoku */ = {
 			isa = PBXGroup;
 			children = (
+				5E6F03161B5637ED006E7E6A /* Addons */,
+				5E4FB86B1B55431900AC6255 /* Tables */,
 				5E6F75511B4FAC8A003B262D /* Controller */,
 				5E6F75501B4FAC82003B262D /* View */,
 				5E6F754F1B4FABA6003B262D /* Model */,
@@ -220,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6F75351B4FAABC003B262D /* Main.storyboard in Resources */,
+				5E4FB86C1B55431900AC6255 /* Tables in Resources */,
 				5E6F753A1B4FAABC003B262D /* LaunchScreen.xib in Resources */,
 				5E6F75371B4FAABC003B262D /* Images.xcassets in Resources */,
 			);
@@ -242,6 +257,7 @@
 				5EB41D161B53BB01009E8F57 /* Table.swift in Sources */,
 				5E6F75321B4FAABC003B262D /* ViewController.swift in Sources */,
 				5E6F75301B4FAABC003B262D /* AppDelegate.swift in Sources */,
+				5E6F03201B563AC2006E7E6A /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

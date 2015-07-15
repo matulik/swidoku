@@ -126,23 +126,18 @@ class Table {
         }
         return true
     }
+    
+    func readJSONTableFromFile(name : String) -> Bool {
+        let path = NSBundle.mainBundle().pathForResource("Tables/"+name, ofType: "json")
+        if let data = NSData(contentsOfFile: path!, options: NSDataReadingOptions.allZeros, error: nil) {
+            let json = JSON(data : data)
+            for x in 0..<9 {
+                for y in 0..<9 {
+                    self.setXYValue(x, y: y, v: json["sudokuTable"][x][y].int!)
+                }
+            }
+            return true
+        }
+     return false
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
