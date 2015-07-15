@@ -24,8 +24,10 @@ class ViewController: UIViewController {
         // Gesture (must to do)
         self.initLabels()
         //
+        //
         table.readJSONTableFromFile("sample")
         self.fillArray(self.table)
+        //
     }
 
     override func didReceiveMemoryWarning() {
