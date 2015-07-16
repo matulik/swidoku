@@ -130,6 +130,7 @@ class ViewController: UIViewController {
         if let l = label {
             l.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
         }
+        self.clearHighlight()
         self.currentTableName = tableName
         println("new game: \(tableName)")
     }
