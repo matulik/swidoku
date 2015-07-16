@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var currentTagEditable : Bool = false
     var highlight : Bool = false
     var autoinfo : Bool = false
+    var currentTableName : String = ""
     
     var table : Table = Table()
     
@@ -121,9 +122,15 @@ class ViewController: UIViewController {
     
     // Load new table
     func newGame(tableName : String) {
+        self.currentTagEditable = false
         self.table.readJSONTableFromFile(tableName)
         self.initLabels()
         self.fillArray(self.table)
+        var label : UILabel? = self.contentView.viewWithTag(self.currentSelectedTag) as? UILabel
+        if let l = label {
+            l.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
+        }
+        self.currentTableName = tableName
         println("new game: \(tableName)")
     }
     
