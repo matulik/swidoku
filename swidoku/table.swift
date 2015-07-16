@@ -168,10 +168,11 @@ class Table {
         let filelist = filemgr.contentsOfDirectoryAtPath(path, error: nil)
         for filename in filelist! {
             let temp = filename as! String
-            let range = Range(start: advance(temp.endIndex, -5), end: temp.endIndex)
+            var range = Range(start: advance(temp.endIndex, -5), end: temp.endIndex)
             let json : String = temp.substringWithRange(range)
             if(json == ".JSON" || json == ".json") {
-                array.append(temp)
+                range = Range(start: temp.startIndex, end: advance(temp.endIndex, -5))
+                array.append(temp.substringWithRange(range))
             }
         }
         return array
