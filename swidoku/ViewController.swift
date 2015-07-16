@@ -28,8 +28,8 @@ class ViewController: UIViewController {
         self.initLabels()
         //
         //
-        table.readJSONTableFromFile("sample")
-        self.fillArray(self.table)
+        //table.readJSONTableFromFile("sample")
+        //self.fillArray(self.table)
         //
     }
 
@@ -117,6 +117,13 @@ class ViewController: UIViewController {
             self.setXYViewValue(self.currentSelectedX, y: self.currentSelectedY, v: 0)
             self.table.setArray(self.returnAsArray())
         }
+    }
+    
+    // Load new table
+    func newGame(tableName : String) {
+        self.table.readJSONTableFromFile(tableName)
+        self.fillArray(self.table)
+        println("new game: \(tableName)")
     }
     
     // Method to get XY value from view
