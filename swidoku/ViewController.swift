@@ -122,6 +122,7 @@ class ViewController: UIViewController {
     // Load new table
     func newGame(tableName : String) {
         self.table.readJSONTableFromFile(tableName)
+        self.initLabels()
         self.fillArray(self.table)
         println("new game: \(tableName)")
     }
@@ -250,7 +251,9 @@ class ViewController: UIViewController {
                 labelTapArray[x][y] = UITapGestureRecognizer(target: self, action: "labelTap:")
                 labelTapArray[x][y].numberOfTapsRequired = 1
                 labelArray[x][y].userInteractionEnabled = true
+                labelArray[x][y].text = ""
                 labelArray[x][y].addGestureRecognizer(labelTapArray[x][y])
+                labelArray[x][y].enabled = true
             }
         }
     }

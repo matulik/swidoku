@@ -1351,25 +1351,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVf-z1-Y7u">
                                 <rect key="frame" x="20" y="428" width="560" height="152"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tRs-fI-wkQ">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WTA-5x-RXz">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="152"/>
                                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tGl-x6-GVP">
-                                            <size key="itemSize" width="120" height="120"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lgh-s1-8VD">
+                                            <size key="itemSize" width="121" height="123"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Rz8-Jb-bou" customClass="TableCollectionViewCell" customModule="swidoku" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Zua-ya-wIa" customClass="TableCollectionViewCell" customModule="swidoku" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="121" height="123"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="261-D4-dQe">
-                                                            <rect key="frame" x="39" y="50" width="42" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tl-8o-2Ie">
+                                                            <rect key="frame" x="40" y="51" width="42" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1379,26 +1379,26 @@
                                                 </view>
                                                 <color key="backgroundColor" red="0.73205735729999999" green="0.877249053" blue="0.093471722879999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="centerX" secondItem="261-D4-dQe" secondAttribute="centerX" id="9QK-bf-LM8"/>
-                                                    <constraint firstAttribute="centerY" secondItem="261-D4-dQe" secondAttribute="centerY" id="O1M-FL-fbA"/>
+                                                    <constraint firstAttribute="centerX" secondItem="2Tl-8o-2Ie" secondAttribute="centerX" id="6uY-Vi-ud3"/>
+                                                    <constraint firstAttribute="centerY" secondItem="2Tl-8o-2Ie" secondAttribute="centerY" id="G3u-xC-wd8"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="tableNameLabel" destination="261-D4-dQe" id="Zyc-4v-Xhs"/>
+                                                    <outlet property="tableNameLabel" destination="2Tl-8o-2Ie" id="lGa-Tn-5Jd"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
-                                            <outlet property="dataSource" destination="RUj-ck-P7S" id="3fX-Vp-k2V"/>
-                                            <outlet property="delegate" destination="RUj-ck-P7S" id="GEz-zi-Owc"/>
+                                            <outlet property="dataSource" destination="RUj-ck-P7S" id="qq7-AL-KFH"/>
+                                            <outlet property="delegate" destination="RUj-ck-P7S" id="ibv-uF-CRT"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" secondItem="tRs-fI-wkQ" secondAttribute="height" id="JQM-jE-aq6"/>
-                                    <constraint firstAttribute="width" secondItem="tRs-fI-wkQ" secondAttribute="width" id="VaY-hZ-rh9"/>
-                                    <constraint firstAttribute="centerX" secondItem="tRs-fI-wkQ" secondAttribute="centerX" id="nbH-dg-1bo"/>
-                                    <constraint firstAttribute="centerY" secondItem="tRs-fI-wkQ" secondAttribute="centerY" id="yXf-3y-b1N"/>
+                                    <constraint firstItem="WTA-5x-RXz" firstAttribute="height" secondItem="wVf-z1-Y7u" secondAttribute="height" id="Q8F-dO-o5S"/>
+                                    <constraint firstAttribute="centerY" secondItem="WTA-5x-RXz" secondAttribute="centerY" id="R8i-OH-Cop"/>
+                                    <constraint firstAttribute="centerX" secondItem="WTA-5x-RXz" secondAttribute="centerX" id="lAH-XH-dBG"/>
+                                    <constraint firstItem="WTA-5x-RXz" firstAttribute="width" secondItem="wVf-z1-Y7u" secondAttribute="width" id="pFK-Wj-WHk"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0N-1o-UJD">
@@ -1463,7 +1463,6 @@
                     <connections>
                         <outlet property="autoinfoSwitch" destination="9yw-3F-STN" id="obf-bK-mQv"/>
                         <outlet property="highlightSwitch" destination="IsL-Sh-1kX" id="Hhx-61-eOW"/>
-                        <outlet property="tableCollectionView" destination="tRs-fI-wkQ" id="BN4-IH-F1o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JgQ-fa-c3H" userLabel="First Responder" sceneMemberID="firstResponder"/>

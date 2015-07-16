@@ -37,21 +37,19 @@ class SettingsController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var alert = UIAlertController(title: "New game", message: "Are you sure to start new game?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: { action in
-            
+        
         }))
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Cancel, handler: { action in
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TableCollectionViewCell
             let mainVC = self.navigationController?.viewControllers[0] as! ViewController
             mainVC.newGame(cell.tableNameLabel.text!)
+            self.navigationController?.popViewControllerAnimated(true)
+        
         }))
         self.presentViewController(alert, animated: true, completion: nil)
-        /*
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TableCollectionViewCell
-        let mainVC = self.navigationController?.viewControllers[0] as! ViewController
-        mainVC.newGame(cell.tableNameLabel.text!)*/
     }
     
     override func didReceiveMemoryWarning() {
