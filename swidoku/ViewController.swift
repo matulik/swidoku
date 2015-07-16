@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     var currentSelectedX : Int = 8
     var currentSelectedY : Int = 8
     var currentTagEditable : Bool = false
+    var highlight : Bool = false
+    var autoinfo : Bool = false
+    
     var table : Table = Table()
     
     
@@ -35,6 +38,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let settingsVC = segue.destinationViewController as? SettingsController
+        settingsVC?.highlight = self.highlight
+        settingsVC?.autoinfo = self.autoinfo
+    }
+    
+    @IBAction func checkButton(sender: AnyObject) {
+        self.runCheck()
+    }
     
     // Buttons actions
     @IBAction func pressButton1(sender: AnyObject) {
@@ -240,14 +252,16 @@ class ViewController: UIViewController {
     func labelTap(g: UIGestureRecognizer) {
         var view = g.view
         if (self.currentSelectedTag != view?.tag) {
-            // Previous label
+            // Previous label # TO REMOVE - drawHighligh can do it
             var label_prev : UILabel? = self.contentView.viewWithTag(self.currentSelectedTag) as? UILabel
             label_prev!.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
+            //
             
             // Current label
             self.currentSelectedTag = view!.tag
             self.currentSelectedX = self.currentSelectedTag / 10
             self.currentSelectedY = self.currentSelectedTag - self.currentSelectedX * 10
+            self.drawHighligh()
             var label : UILabel? = self.contentView.viewWithTag(view!.tag) as? UILabel
             label!.backgroundColor = UIColor(red: 0xFF/255, green: 0xFF/255, blue: 0x00/255, alpha: 1.0)
             
@@ -263,8 +277,114 @@ class ViewController: UIViewController {
                 l.backgroundColor = UIColor(red: 0x00/255, green: 0xC8/255, blue: 0xFF/255, alpha: 1.0)
                 self.currentTagEditable = true
             }
-
         }
-        println(self.table.checkTable())
+        if (self.table.checkTable() == true && self.autoinfo) {
+            self.runCheck()
+        }
+    }
+    
+    func drawHighligh() {
+        if self.highlight == false {
+            return
+        }
+        else {
+            // Clear
+            var bsindex : Int = -1
+            for x in 0..<9 {
+                for y in 0..<9 {
+                    if(x == 0 && y == 0){
+                        bsindex = 100
+                    }
+                    else {
+                        bsindex = (x*10)+y
+                    }
+                    var label = self.contentView.viewWithTag(bsindex) as? UILabel
+                    if let l = label {
+                        label!.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
+                    }
+                }
+            }
+            // Draw x
+            bsindex = -1
+            for i in 0..<9 {
+                if (self.currentSelectedX == 0 && i == 0){
+                    bsindex = 100
+                }
+                else {
+                    bsindex = (self.currentSelectedX*10)+i
+                }
+                var label = self.contentView.viewWithTag(bsindex) as? UILabel
+                if let l = label {
+                    label!.backgroundColor = UIColor(red: 0x00/255, green: 0xCC/255, blue: 0x00/255, alpha: 1.0)
+                }
+            }
+            // Draw y
+            for i in 0..<9 {
+                if(self.currentSelectedY == 0 && i == 0){
+                    bsindex = 100
+                }
+                else {
+                    bsindex = (i*10)+self.currentSelectedY
+                }
+                var label = self.contentView.viewWithTag(bsindex) as? UILabel
+                if let l = label {
+                    label!.backgroundColor = UIColor(red: 0x00/255, green: 0xCC/255, blue: 0x00/255, alpha: 1.0)
+                }
+            }
+            // Draw square
+            let tag = ((self.currentSelectedTag/10)/3)*10+((self.currentSelectedTag-(self.currentSelectedTag/10)*10)/3)
+            let x : Int = (tag/10)*3
+            let y : Int = (tag - (tag/10)*10)*3
+            for n in x..<x+3 {
+                for m in y..<y+3 {
+                    if (n == 0 && m == 0) {
+                        bsindex = 100
+                    }
+                    else
+                    {
+                        bsindex = (n*10)+m
+                    }
+                    var label = self.contentView.viewWithTag(bsindex) as? UILabel
+                    if let l = label {
+                        label!.backgroundColor = UIColor(red: 0x00/255, green: 0xCC/255, blue: 0x00/255, alpha: 1.0)
+                    }
+                }
+            }
+        }
+    }
+    
+    func clearHighlight() {
+        var bindex : Int
+        for x in 0..<9 {
+            for y in 0..<9 {
+                if(x == 0 && y == 0) {
+                    bindex = 100
+                }
+                else {
+                    bindex = (x*10)+y
+                }
+                var label = self.contentView.viewWithTag(bindex) as? UILabel
+                if let l = label {
+                    label!.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
+                }
+            }
+        }
+    }
+    
+    func runCheck() {
+        var message : String
+        var title : String
+        if (self.table.checkTable() == true) {
+            title = "Success!"
+            message = "Your table is perfectly!"
+        }
+        else {
+            title = "Checking fail.."
+            message = "Your table is wrong.."
+        }
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
+
