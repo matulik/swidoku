@@ -20,6 +20,7 @@ class Table {
                 self.contentTable[x][y] = 0
             }
         }
+        println(self.getTablesNameArray())
     }
     
     func setArray(x : Array<Array<Int>>) {
@@ -141,4 +142,48 @@ class Table {
         }
      return false
     }
+    
+    // Return count of sudoku tables 
+    func getTablesCount() -> Int {
+        var count = 0
+        let path = (NSBundle.mainBundle().resourcePath!)+"/Tables"
+        let filemgr = NSFileManager.defaultManager()
+        let filelist = filemgr.contentsOfDirectoryAtPath(path, error: nil)
+        for filename in filelist! {
+            let temp = filename as! String
+            let range = Range(start: advance(temp.endIndex, -5), end: temp.endIndex)
+            let json : String = temp.substringWithRange(range)
+            if (json == ".JSON" || json == ".json") {
+                count++
+            }
+        }
+        return count
+    }
+    
+    func getTablesNameArray() -> Array<String> {
+        var array : Array<String> = Array<String>()
+        var count = 0
+        let path = (NSBundle.mainBundle().resourcePath!)+"/Tables"
+        let filemgr = NSFileManager.defaultManager()
+        let filelist = filemgr.contentsOfDirectoryAtPath(path, error: nil)
+        for filename in filelist! {
+            let temp = filename as! String
+            let range = Range(start: advance(temp.endIndex, -5), end: temp.endIndex)
+            let json : String = temp.substringWithRange(range)
+            if(json == ".JSON" || json == ".json") {
+                array.append(temp)
+            }
+        }
+        return array
+    }
 }
+
+
+
+
+
+
+
+
+
+

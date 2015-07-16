@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsController: UIViewController {
+class SettingsController: UIViewController {//, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet var highlightSwitch: UISwitch!
     @IBOutlet var autoinfoSwitch: UISwitch!
