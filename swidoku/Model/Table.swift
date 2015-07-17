@@ -132,6 +132,9 @@ class Table {
     // To read JSON table file and set into self table. Remember to keep "sudokuTable" key in json file
     // TODO method to check if JSON is right
     func readJSONTableFromFile(name : String) -> Bool {
+        if name == "last" {
+            self.loadLastGame()
+        }
         let path = NSBundle.mainBundle().pathForResource("Tables/"+name, ofType: "json")
         if let data = NSData(contentsOfFile: path!, options: NSDataReadingOptions.allZeros, error: nil) {
             let json = JSON(data : data)
@@ -154,7 +157,6 @@ class Table {
         text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
         // Save to string
         let path_table = (NSBundle.mainBundle().resourcePath!)+"/Tables/last.table"
-        println(path_table)
         var temp : String = ""
         for x in 0..<9 {
             for y in 0..<9 {
@@ -162,8 +164,23 @@ class Table {
             }
         }
         temp.writeToFile(path_table, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
-        
-
+    }
+    
+    func loadLastGame() {
+        let path_name = NSBundle.mainBundle().pathForResource("Tables/last", ofType: "name")
+        let path_table = NSBundle.mainBundle().pathForResource("Tables/last", ofType: "table")
+        let table = String(contentsOfFile: path_table!, encoding: NSUTF8StringEncoding, error: nil)
+        //TODO
+        var i : Int = 0
+        for c in table! {
+            //TODO
+            var x = (i/10)
+            var y = (i-x*10)
+            var val : Int = String(c).toInt()!
+            println("x:\(x),y:\(y),v:\(val)")
+            self.setXYValue(x, y: y, v: val)
+            i++
+        }
     }
     
     // Return count of sudoku tables 

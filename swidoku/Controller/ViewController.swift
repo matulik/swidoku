@@ -429,7 +429,7 @@ class ViewController: UIViewController {
     }
     
     func removeBlur() {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         UIView.transitionWithView(self.view, duration: 3.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
             self.blurView.removeFromSuperview()
