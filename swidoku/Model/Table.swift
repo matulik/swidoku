@@ -10,6 +10,7 @@ import Foundation
 
 class Table {
     var contentTable = Array<Array<Int>>()
+    var currentTableName : String = ""
     
     init() {
         for c in 0..<9 {
@@ -142,6 +143,27 @@ class Table {
             return true
         }
      return false
+    }
+    
+    // To save table into JSON file - to continue last game
+    func saveCurrentTable() {
+        // Keep last table name
+        let text : String = self.currentTableName
+        let path = (NSBundle.mainBundle().resourcePath!)+"/Tables/last.name"
+        println(path)
+        text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+        // Save to string
+        let path_table = (NSBundle.mainBundle().resourcePath!)+"/Tables/last.table"
+        println(path_table)
+        var temp : String = ""
+        for x in 0..<9 {
+            for y in 0..<9 {
+                temp = temp + String(format: "%d", self.getXYValue(x, y: y))
+            }
+        }
+        temp.writeToFile(path_table, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+        
+
     }
     
     // Return count of sudoku tables 

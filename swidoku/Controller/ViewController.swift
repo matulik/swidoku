@@ -59,26 +59,6 @@ class ViewController: UIViewController {
         self.runCheck()
     }
     
-    func setBlur(){
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        var blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        self.blurView = UIVisualEffectView(effect: blur)
-        self.blurView.frame = self.view.bounds
-        
-        UIView.transitionWithView(self.view, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-            self.view.addSubview(self.blurView)
-            }, completion: nil)
-    }
-    
-    func removeBlur() {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        UIView.transitionWithView(self.view, duration: 3.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-        self.blurView.removeFromSuperview()
-        }, completion: nil)
-    }
-    
-
     // Buttons actions
     @IBAction func pressButton1(sender: AnyObject) {
         if self.currentTagEditable == true {
@@ -152,6 +132,7 @@ class ViewController: UIViewController {
     
     // Load new table
     func newGame(tableName : String) {
+        self.table.saveCurrentTable()
         self.currentTagEditable = false
         self.table.readJSONTableFromFile(tableName)
         self.initLabels()
@@ -162,6 +143,7 @@ class ViewController: UIViewController {
         }
         self.clearHighlight()
         self.currentTableName = tableName
+        self.table.currentTableName = self.currentTableName
         println("new game: \(tableName)")
     }
     
@@ -434,5 +416,26 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    func setBlur(){
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        var blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        self.blurView = UIVisualEffectView(effect: blur)
+        self.blurView.frame = self.view.bounds
+        
+        UIView.transitionWithView(self.view, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            self.view.addSubview(self.blurView)
+            }, completion: nil)
+    }
+    
+    func removeBlur() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        UIView.transitionWithView(self.view, duration: 3.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            self.blurView.removeFromSuperview()
+            }, completion: nil)
+    }
 }
+
+
 
