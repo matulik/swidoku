@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var highlight : Bool = false
     var autoinfo : Bool = false
     var currentTableName : String = ""
+    var blurView : UIVisualEffectView = UIVisualEffectView()
     
     var table : Table = Table()
     
@@ -28,9 +29,7 @@ class ViewController: UIViewController {
         // Gesture (must to do)
         self.initLabels()
         //
-        //
-        //table.readJSONTableFromFile("sample")
-        //self.fillArray(self.table)
+        
         //
     }
 
@@ -40,15 +39,46 @@ class ViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let settingsVC = segue.destinationViewController as? SettingsController
-        settingsVC?.highlight = self.highlight
-        settingsVC?.autoinfo = self.autoinfo
+        if segue.identifier == "settings" {
+            let settingsVC = segue.destinationViewController as! SettingsController
+            settingsVC.highlight = self.highlight
+            settingsVC.autoinfo = self.autoinfo
+        }
+        else if segue.identifier == "newgame" {
+            let sourVC = segue.sourceViewController as! ViewController
+            let destVC = segue.destinationViewController as! NewGameController
+            destVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+        
+            var destView = destVC.view
+            destView.backgroundColor = UIColor.clearColor()
+            self.setBlur()
+        }
     }
     
     @IBAction func checkButton(sender: AnyObject) {
         self.runCheck()
     }
     
+    func setBlur(){
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        var blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        self.blurView = UIVisualEffectView(effect: blur)
+        self.blurView.frame = self.view.bounds
+        
+        UIView.transitionWithView(self.view, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            self.view.addSubview(self.blurView)
+            }, completion: nil)
+    }
+    
+    func removeBlur() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        UIView.transitionWithView(self.view, duration: 3.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+        self.blurView.removeFromSuperview()
+        }, completion: nil)
+    }
+    
+
     // Buttons actions
     @IBAction func pressButton1(sender: AnyObject) {
         if self.currentTagEditable == true {
