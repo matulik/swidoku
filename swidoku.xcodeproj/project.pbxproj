@@ -18,6 +18,7 @@
 		5E6F75371B4FAABC003B262D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6F75361B4FAABC003B262D /* Images.xcassets */; };
 		5E6F753A1B4FAABC003B262D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6F75381B4FAABC003B262D /* LaunchScreen.xib */; };
 		5E6F75461B4FAABC003B262D /* swidokuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6F75451B4FAABC003B262D /* swidokuTests.swift */; };
+		5E703E0D1B58E47900EC0DB8 /* NewGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E703E0C1B58E47900EC0DB8 /* NewGameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		5E6F753F1B4FAABC003B262D /* swidokuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swidokuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6F75441B4FAABC003B262D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6F75451B4FAABC003B262D /* swidokuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swidokuTests.swift; sourceTree = "<group>"; };
+		5E703E0C1B58E47900EC0DB8 /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		5E6F75511B4FAC8A003B262D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5E703E0C1B58E47900EC0DB8 /* NewGameController.swift */,
 				5E5AEBB51B57F7AA0043F7CE /* SettingsController.swift */,
 				5E5AEBB61B57F7AA0043F7CE /* TableCollectionViewCell.swift */,
 				5E5AEBB71B57F7AA0043F7CE /* ViewController.swift */,
@@ -264,6 +267,7 @@
 				5E5AEBBC1B57F7B50043F7CE /* Table.swift in Sources */,
 				5E5AEBBA1B57F7AA0043F7CE /* ViewController.swift in Sources */,
 				5E5AEBB81B57F7AA0043F7CE /* SettingsController.swift in Sources */,
+				5E703E0D1B58E47900EC0DB8 /* NewGameController.swift in Sources */,
 				5E5AEBB41B57EBC10043F7CE /* SwiftyJSON.swift in Sources */,
 				5E6F75301B4FAABC003B262D /* AppDelegate.swift in Sources */,
 				5E5AEBB91B57F7AA0043F7CE /* TableCollectionViewCell.swift in Sources */,

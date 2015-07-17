@@ -11,4 +11,5 @@ import UIKit
 class TableCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var tableNameLabel: UILabel!
+    @IBOutlet var tableNewGameNameLabel: UILabel!
 }
