@@ -16,6 +16,7 @@ class Table {
     init() {
         for c in 0..<9 {
             self.contentTable.append(Array(count: 9, repeatedValue: Int()))
+            self.loadedTable.append(Array(count: 9, repeatedValue: Int()))
         }
         for x in 0..<9 {
             for y in 0..<9 {
@@ -177,6 +178,7 @@ class Table {
     func loadLastGame() {
         let path_name = NSBundle.mainBundle().pathForResource("Tables/last", ofType: "name")
         let name = String(contentsOfFile: path_name!, encoding: NSUTF8StringEncoding, error: nil)
+        println("Loading \(name)")
         
         let path_table = NSBundle.mainBundle().pathForResource("Tables/last", ofType: "table")
         let table = String(contentsOfFile: path_table!, encoding: NSUTF8StringEncoding, error: nil)
@@ -184,15 +186,12 @@ class Table {
         let path_json = NSBundle.mainBundle().pathForResource("Tables/"+name!, ofType: "json")
         
         self.readJSONTableFromFile(name!)
-        
-        for c in 0..<9 {
-            self.contentTable.append(Array(count: 9, repeatedValue: Int(0)))
-        }
+
         var x : Int = 0
         var y : Int = 0
         for c in table! {
             var val : Int = String(c).toInt()!
-            self.loadedTable[x][y] = val
+            self.loadedTable[y][x] = val
             if (x == 8){
                 x = 0
                 y++
@@ -201,9 +200,12 @@ class Table {
                 x++
             }
         }
-        println(self.loadedTable)
     }
     
+    func getLoadedTable() -> Array<Array<Int>> {
+        return self.loadedTable
+    }
+        
     // Return count of sudoku tables 
     func getTablesCount() -> Int {
         var count = 0

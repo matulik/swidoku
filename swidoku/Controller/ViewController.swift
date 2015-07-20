@@ -146,6 +146,9 @@ class ViewController: UIViewController {
         self.table.readJSONTableFromFile(tableName)
         self.initLabels()
         self.fillArray(self.table)
+        if(tableName == "last"){
+            self.fillLoadedArray(self.table)
+        }
         var label : UILabel? = self.contentView.viewWithTag(self.currentSelectedTag) as? UILabel
         if let l = label {
             l.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
@@ -206,6 +209,7 @@ class ViewController: UIViewController {
             }
             else {
                 l.text = String(format: "%d", v)
+                l.textColor = UIColor.blackColor()
             }
             // Return 0 if success
             return 0
@@ -241,6 +245,28 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func fillLoadedArray(table: Table){
+        // TODO replace x/y in loadedTable function
+        let mainTable = table.getArray()
+        let loadedTable = table.getLoadedTable()
+        println(mainTable)
+        println(loadedTable)
+        for x in 0..<9 {
+            for y in 0..<9 {
+                if (mainTable[x][y] == loadedTable[x][y]){
+                    continue
+                }
+                else if (loadedTable[x][y] == 0) {
+                    continue
+                }
+                else {
+                    self.setXYViewValue(x, y: y, v: loadedTable[x][y])
+                }
+            }
+        }
+        
     }
     
     // Method to return array (for Model actions)
