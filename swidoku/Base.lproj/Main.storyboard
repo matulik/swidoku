@@ -1296,6 +1296,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="uLH-Ef-LPy" id="ixk-cE-EgS"/>
+                        <outlet property="newGameButtom" destination="WHQ-lS-4C6" id="c3Q-53-lhR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

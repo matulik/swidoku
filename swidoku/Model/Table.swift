@@ -10,10 +10,14 @@ import Foundation
 
 class Table {
     var contentTable = Array<Array<Int>>()
+    var loadedTable = Array<Array<Int>>()
+    var currentTableName : String = ""
+    var currentTableRealName : String = ""
     
     init() {
         for c in 0..<9 {
             self.contentTable.append(Array(count: 9, repeatedValue: Int()))
+            self.loadedTable.append(Array(count: 9, repeatedValue: Int()))
         }
         for x in 0..<9 {
             for y in 0..<9 {
@@ -29,6 +33,8 @@ class Table {
                 self.contentTable[i][n] = x[i][n]
             }
         }
+        println("saving")
+        self.saveCurrentTable()
     }
     
     func getArray() -> Array<Array<Int>> {
@@ -131,19 +137,82 @@ class Table {
     // To read JSON table file and set into self table. Remember to keep "sudokuTable" key in json file
     // TODO method to check if JSON is right
     func readJSONTableFromFile(name : String) -> Bool {
-        let path = NSBundle.mainBundle().pathForResource("Tables/"+name, ofType: "json")
-        if let data = NSData(contentsOfFile: path!, options: NSDataReadingOptions.allZeros, error: nil) {
-            let json = JSON(data : data)
-            for x in 0..<9 {
-                for y in 0..<9 {
-                    self.setXYValue(x, y: y, v: json["sudokuTable"][x][y].int!)
-                }
-            }
+        println(name)
+        if (name == "last" && self.currentTableName != "last") {
+            self.loadLastGame()
             return true
         }
-     return false
+        else if (name == "last" && self.currentTableName == "last") {
+            println("Its last")
+            return false
+        }
+        else {
+            let path = NSBundle.mainBundle().pathForResource("Tables/"+name, ofType: "json")
+            if let data = NSData(contentsOfFile: path!, options: NSDataReadingOptions.allZeros, error: nil) {
+                let json = JSON(data : data)
+                for x in 0..<9 {
+                    for y in 0..<9 {
+                        self.setXYValue(x, y: y, v: json["sudokuTable"][x][y].int!)
+                    }
+                }
+                self.currentTableRealName = name
+                return true
+            }
+        }
+    return false
     }
     
+    // To save table to continue last game
+    func saveCurrentTable() {
+        // Keep last table name
+        let text : String = self.currentTableName
+        let path = (NSBundle.mainBundle().resourcePath!)+"/Tables/last.name"
+        text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+        // Save to string
+        let path_table = (NSBundle.mainBundle().resourcePath!)+"/Tables/last.table"
+        var temp : String = ""
+        for x in 0..<9 {
+            for y in 0..<9 {
+                temp = temp + String(format: "%d", self.getXYValue(x, y: y))
+                if (x == 8 && y == 8) {
+                }
+            }
+        }
+        temp.writeToFile(path_table, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+    }
+    
+    func loadLastGame() {
+        let path_name = NSBundle.mainBundle().pathForResource("Tables/last", ofType: "name")
+        let name = String(contentsOfFile: path_name!, encoding: NSUTF8StringEncoding, error: nil)
+        println("Loading \(name)")
+        self.currentTableRealName = name!
+        
+        let path_table = NSBundle.mainBundle().pathForResource("Tables/last", ofType: "table")
+        let table = String(contentsOfFile: path_table!, encoding: NSUTF8StringEncoding, error: nil)
+        
+        let path_json = NSBundle.mainBundle().pathForResource("Tables/"+name!, ofType: "json")
+        
+        self.readJSONTableFromFile(name!)
+
+        var x : Int = 0
+        var y : Int = 0
+        for c in table! {
+            var val : Int = String(c).toInt()!
+            self.loadedTable[y][x] = val
+            if (x == 8){
+                x = 0
+                y++
+            }
+            else {
+                x++
+            }
+        }
+    }
+    
+    func getLoadedTable() -> Array<Array<Int>> {
+        return self.loadedTable
+    }
+        
     // Return count of sudoku tables 
     func getTablesCount() -> Int {
         var count = 0

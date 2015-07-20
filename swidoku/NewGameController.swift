@@ -43,7 +43,7 @@ class NewGameController: UIViewController, UICollectionViewDataSource, UICollect
         let navC = self.presentingViewController as! UINavigationController
         let mainVC = navC.topViewController as! ViewController
         cell.tableNewGameNameLabel.text = mainVC.table.getTablesNameArray()[indexPath.row]
-        if cell.tableNewGameNameLabel.text == mainVC.currentTableName {
+        if cell.tableNewGameNameLabel.text == mainVC.table.currentTableRealName {
             cell.backgroundColor = UIColor(red: 0x00/255, green: 0xC8/255, blue: 0xFF/255, alpha: 1.0)
         }
         return cell

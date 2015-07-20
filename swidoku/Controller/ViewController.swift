@@ -8,6 +8,8 @@
 
 import UIKit
 
+var firstRun = true
+
 class ViewController: UIViewController {
     @IBOutlet var contentView: UIView!
     
@@ -19,6 +21,7 @@ class ViewController: UIViewController {
     var autoinfo : Bool = false
     var currentTableName : String = ""
     var blurView : UIVisualEffectView = UIVisualEffectView()
+    @IBOutlet var newGameButtom: UIBarButtonItem!
     
     var table : Table = Table()
     
@@ -29,14 +32,21 @@ class ViewController: UIViewController {
         // Gesture (must to do)
         self.initLabels()
         //
-        
-        //
+        if(firstRun) {
+            self.performSegueWithIdentifier("newgame", sender: self)
+            firstRun = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*deinit {
+        println("deinit")
+    }*/
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "settings" {
@@ -59,26 +69,6 @@ class ViewController: UIViewController {
         self.runCheck()
     }
     
-    func setBlur(){
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        var blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        self.blurView = UIVisualEffectView(effect: blur)
-        self.blurView.frame = self.view.bounds
-        
-        UIView.transitionWithView(self.view, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-            self.view.addSubview(self.blurView)
-            }, completion: nil)
-    }
-    
-    func removeBlur() {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        UIView.transitionWithView(self.view, duration: 3.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-        self.blurView.removeFromSuperview()
-        }, completion: nil)
-    }
-    
-
     // Buttons actions
     @IBAction func pressButton1(sender: AnyObject) {
         if self.currentTagEditable == true {
@@ -156,12 +146,16 @@ class ViewController: UIViewController {
         self.table.readJSONTableFromFile(tableName)
         self.initLabels()
         self.fillArray(self.table)
+        if(tableName == "last"){
+            self.fillLoadedArray(self.table)
+        }
         var label : UILabel? = self.contentView.viewWithTag(self.currentSelectedTag) as? UILabel
         if let l = label {
             l.backgroundColor = UIColor(red: 0xFF/255, green: 0xCC/255, blue: 0x66/255, alpha: 1.0)
         }
         self.clearHighlight()
         self.currentTableName = tableName
+        self.table.currentTableName = self.currentTableName
         println("new game: \(tableName)")
     }
     
@@ -215,6 +209,7 @@ class ViewController: UIViewController {
             }
             else {
                 l.text = String(format: "%d", v)
+                l.textColor = UIColor.blackColor()
             }
             // Return 0 if success
             return 0
@@ -250,6 +245,28 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func fillLoadedArray(table: Table){
+        // TODO replace x/y in loadedTable function
+        let mainTable = table.getArray()
+        let loadedTable = table.getLoadedTable()
+        println(mainTable)
+        println(loadedTable)
+        for x in 0..<9 {
+            for y in 0..<9 {
+                if (mainTable[x][y] == loadedTable[x][y]){
+                    continue
+                }
+                else if (loadedTable[x][y] == 0) {
+                    continue
+                }
+                else {
+                    self.setXYViewValue(x, y: y, v: loadedTable[x][y])
+                }
+            }
+        }
+        
     }
     
     // Method to return array (for Model actions)
@@ -434,5 +451,26 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    func setBlur(){
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        var blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        self.blurView = UIVisualEffectView(effect: blur)
+        self.blurView.frame = self.view.bounds
+        
+        UIView.transitionWithView(self.view, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            self.view.addSubview(self.blurView)
+            }, completion: nil)
+    }
+    
+    func removeBlur() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        UIView.transitionWithView(self.view, duration: 3.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            self.blurView.removeFromSuperview()
+            }, completion: nil)
+    }
 }
+
+
 
