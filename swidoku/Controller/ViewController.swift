@@ -8,6 +8,8 @@
 
 import UIKit
 
+var firstRun = true
+
 class ViewController: UIViewController {
     @IBOutlet var contentView: UIView!
     
@@ -19,6 +21,7 @@ class ViewController: UIViewController {
     var autoinfo : Bool = false
     var currentTableName : String = ""
     var blurView : UIVisualEffectView = UIVisualEffectView()
+    @IBOutlet var newGameButtom: UIBarButtonItem!
     
     var table : Table = Table()
     
@@ -29,14 +32,21 @@ class ViewController: UIViewController {
         // Gesture (must to do)
         self.initLabels()
         //
-        
-        //
+        if(firstRun) {
+            self.performSegueWithIdentifier("newgame", sender: self)
+            firstRun = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*deinit {
+        println("deinit")
+    }*/
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "settings" {
@@ -132,7 +142,6 @@ class ViewController: UIViewController {
     
     // Load new table
     func newGame(tableName : String) {
-        self.table.saveCurrentTable()
         self.currentTagEditable = false
         self.table.readJSONTableFromFile(tableName)
         self.initLabels()
