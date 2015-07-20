@@ -48,6 +48,7 @@
 		5E6F75441B4FAABC003B262D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6F75451B4FAABC003B262D /* swidokuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swidokuTests.swift; sourceTree = "<group>"; };
 		5E703E0C1B58E47900EC0DB8 /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
+		5EFE38461B5D22030057CCAB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +298,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5E6F75341B4FAABC003B262D /* Base */,
+				5EFE38461B5D22030057CCAB /* pl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
