@@ -138,9 +138,13 @@ class Table {
     // TODO method to check if JSON is right
     func readJSONTableFromFile(name : String) -> Bool {
         println(name)
-        if name == "last" {
+        if (name == "last" && self.currentTableName != "last") {
             self.loadLastGame()
             return true
+        }
+        else if (name == "last" && self.currentTableName == "last") {
+            println("Its last")
+            return false
         }
         else {
             let path = NSBundle.mainBundle().pathForResource("Tables/"+name, ofType: "json")
