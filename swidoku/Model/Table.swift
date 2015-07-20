@@ -148,6 +148,9 @@ class Table {
         }
         else {
             let path = NSBundle.mainBundle().pathForResource("Tables/"+name, ofType: "json")
+            if (path == nil) {
+                return false
+            }
             if let data = NSData(contentsOfFile: path!, options: NSDataReadingOptions.allZeros, error: nil) {
                 let json = JSON(data : data)
                 for x in 0..<9 {

@@ -46,6 +46,9 @@ class NewGameController: UIViewController, UICollectionViewDataSource, UICollect
         if cell.tableNewGameNameLabel.text == mainVC.table.currentTableRealName {
             cell.backgroundColor = UIColor(red: 0x00/255, green: 0xC8/255, blue: 0xFF/255, alpha: 1.0)
         }
+        else {
+            cell.backgroundColor = UIColor(red: 0xA1/255, green: 0xDB/255, blue: 0x12/255, alpha: 1.0)
+        }
         return cell
     }
     

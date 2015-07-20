@@ -32,12 +32,16 @@ class SettingsController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        println("called")
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as!
         TableCollectionViewCell
         let mainVC = self.navigationController?.viewControllers[0] as! ViewController
         cell.tableNameLabel.text = mainVC.table.getTablesNameArray()[indexPath.row]
         if cell.tableNameLabel.text == mainVC.table.currentTableRealName{
             cell.backgroundColor = UIColor(red: 0x00/255, green: 0xC8/255, blue: 0xFF/255, alpha: 1.0)
+        }
+        else {
+            cell.backgroundColor = UIColor(red: 0xA1/255, green: 0xDB/255, blue: 0x12/255, alpha: 1.0)
         }
         return cell
     }
