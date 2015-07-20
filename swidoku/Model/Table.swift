@@ -12,6 +12,7 @@ class Table {
     var contentTable = Array<Array<Int>>()
     var loadedTable = Array<Array<Int>>()
     var currentTableName : String = ""
+    var currentTableRealName : String = ""
     
     init() {
         for c in 0..<9 {
@@ -150,6 +151,7 @@ class Table {
                         self.setXYValue(x, y: y, v: json["sudokuTable"][x][y].int!)
                     }
                 }
+                self.currentTableRealName = name
                 return true
             }
         }
@@ -179,6 +181,7 @@ class Table {
         let path_name = NSBundle.mainBundle().pathForResource("Tables/last", ofType: "name")
         let name = String(contentsOfFile: path_name!, encoding: NSUTF8StringEncoding, error: nil)
         println("Loading \(name)")
+        self.currentTableRealName = name!
         
         let path_table = NSBundle.mainBundle().pathForResource("Tables/last", ofType: "table")
         let table = String(contentsOfFile: path_table!, encoding: NSUTF8StringEncoding, error: nil)
