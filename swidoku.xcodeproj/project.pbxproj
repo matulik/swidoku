@@ -68,12 +68,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5E6F03161B5637ED006E7E6A /* Addony */ = {
+		5E6F03161B5637ED006E7E6A /* Addons */ = {
 			isa = PBXGroup;
 			children = (
 				5E5AEBB31B57EBC10043F7CE /* SwiftyJSON.swift */,
 			);
-			name = Addony;
+			name = Addons;
 			sourceTree = "<group>";
 		};
 		5E6F75211B4FAABC003B262D = {
@@ -97,7 +97,7 @@
 		5E6F752C1B4FAABC003B262D /* swidoku */ = {
 			isa = PBXGroup;
 			children = (
-				5E6F03161B5637ED006E7E6A /* Addony */,
+				5E6F03161B5637ED006E7E6A /* Addons */,
 				5E4FB86B1B55431900AC6255 /* Tables */,
 				5E6F75511B4FAC8A003B262D /* Controller */,
 				5E6F75501B4FAC82003B262D /* View */,

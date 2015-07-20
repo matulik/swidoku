@@ -1376,11 +1376,11 @@
                                             </collectionViewCell>
                                         </cells>
                                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="IYE-q5-ZXN">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="160"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="144"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionReusableView>
                                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footer" id="CQp-d8-Y8P">
-                                            <rect key="frame" x="100" y="0.0" width="50" height="160"/>
+                                            <rect key="frame" x="170" y="0.0" width="50" height="144"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionReusableView>
                                         <connections>
