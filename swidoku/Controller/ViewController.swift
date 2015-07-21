@@ -43,11 +43,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*deinit {
-        println("deinit")
-    }*/
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "settings" {
             let settingsVC = segue.destinationViewController as! SettingsController
@@ -61,8 +56,15 @@ class ViewController: UIViewController {
         
             var destView = destVC.view
             destView.backgroundColor = UIColor.clearColor()
-            self.setBlur()
+            self.setBlur(1.0)
         }
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animateAlongsideTransition(nil, completion: { context in
+            self.removeBlur(0.0)
+            self.setBlur(0.0)
+        })
     }
     
     @IBAction func checkButton(sender: AnyObject) {
@@ -452,25 +454,29 @@ class ViewController: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func setBlur(){
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+
+    func setBlur(duration: NSTimeInterval){
+        if duration == 0.0 {
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
+        }
+        else {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+
         var blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         self.blurView = UIVisualEffectView(effect: blur)
         self.blurView.frame = self.view.bounds
         
-        UIView.transitionWithView(self.view, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+        UIView.transitionWithView(self.view, duration: duration, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
             self.view.addSubview(self.blurView)
             }, completion: nil)
     }
     
-    func removeBlur() {
+    func removeBlur(duration: NSTimeInterval) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
-        UIView.transitionWithView(self.view, duration: 2.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+        UIView.transitionWithView(self.view, duration: duration, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
             self.blurView.removeFromSuperview()
             }, completion: nil)
     }
 }
-
-
-

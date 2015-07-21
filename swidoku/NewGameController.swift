@@ -26,7 +26,7 @@ class NewGameController: UIViewController, UICollectionViewDataSource, UICollect
     func returnToMainVC() {
         let navC = self.presentingViewController as! UINavigationController
         let mainVC = navC.topViewController as! ViewController
-        mainVC.removeBlur()
+        mainVC.removeBlur(2.0)
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     
